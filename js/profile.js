@@ -16,4 +16,6 @@ $(document).ready(function() {
 			$("#contact").val(data.contact);
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
-			console.log(text
+			console.log(text)
+		}
+	})})

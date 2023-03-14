@@ -12,15 +12,15 @@ if (!$conn) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-// Prepare statement and bind parameters
+// Preparing statement and bind parameters
 $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->bind_param("s", $email);
 
-// Set parameter and execute statement
+// Setting parameter and execute statement
 $email = $_POST["email"];
 $stmt->execute();
 
-// Get result and validate password
+// Getting result and validate password
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
@@ -30,7 +30,7 @@ if ($user && password_verify($_POST["password"], $user["password"])) {
 	http_response_code(401);
 }
 
-// Close statement and MySQL connection
+// Closing statement and MySQL connection
 $stmt->close();
 $conn->close();
 ?>
